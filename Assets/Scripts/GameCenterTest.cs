@@ -19,7 +19,7 @@ public class GameCenterTest : MonoBehaviour {
 		// Event listeners
 		slider.GetComponent<Slider>().onValueChanged.AddListener (delegate { updateScoreText(); });
 		checkScoreboardButton.GetComponent<Button>().onClick.AddListener(() => { Social.ShowLeaderboardUI(); });
-		sendScoreButton.GetComponent<Button>().onClick.AddListener(() => { ReportScore(sliderVal, "0"); });
+		sendScoreButton.GetComponent<Button>().onClick.AddListener(() => { ReportScore(sliderVal, "1"); });
 	}
 	
 	void Start () {
@@ -29,12 +29,12 @@ public class GameCenterTest : MonoBehaviour {
 	
 	// Game Center Auth Error Handling
 	void ProcessAuthentication (bool success) {
-        if (success) {
-            Debug.Log ("Authenticated, checking achievements");
-        } else {
+       	   	if (success) {
+            		Debug.Log ("Authenticated, checking achievements");
+        	} else {
 			Debug.Log ("Failed to authenticate");
 		}     
-    }
+    	}
 	
 	// Pushes the score to iOS GameCenter
 	void ReportScore (long score, string leaderboardID) {
@@ -49,6 +49,4 @@ public class GameCenterTest : MonoBehaviour {
 		sliderVal = (long) slider.GetComponent<Slider>().value;
 		scoreText.GetComponent<Text>().text = sliderVal.ToString();
 	} 
-	
-	
 }
